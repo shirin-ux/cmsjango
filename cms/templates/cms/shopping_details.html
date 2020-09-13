@@ -1,0 +1,105 @@
+{% extends "cms/base_page.html" %}
+{% load static %}
+{% block title %}خريد هاي من{% endblock %}
+
+{% block main_content %}
+<div class="container main-section">
+		<div class="row">
+
+
+
+<section class="pt-5 pb-5">
+  <div class="container">
+    <div class="row w-100">
+        <div class="col-lg-12 col-md-12 col-12">
+            <h3 class="display-5 mb-2 text-center">سبد خريد</h3>
+            <p class="mb-5 text-center">
+                <i class="text-info font-weight-bold">3</i> items in your cart</p>
+            <table id="shoppingCart" class="table table-condensed table-responsive">
+                <thead>
+                    <tr>
+                        <th style="width:60%">محصول</th>
+                        <th style="width:12%">قيمت</th>
+                        <th style="width:10%">تعداد</th>
+                        <th style="width:16%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                   {% if shoppings %}
+                     {% for shopping in  shoppings %}
+                    <tr>
+                        <td data-th="Product">
+                            <div class="row">
+                                <div class="col-md-3 text-left">
+                                    <img  src="{{shopping.product.image.url}}" alt="{{shopping.product.name_post}}" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                </div>
+                                <div class="col-md-9 text-left mt-sm-2">
+                                    <h4>{{ shopping.product.posts.name_post }}</h4>
+                                   <a href="{% url "cms:shopping_details" shopping_id=shopping.id %}"></a>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">{{shopping.product.price_post}}</td>
+                        <td data-th="Quantity">
+                            <input type="number" class="form-control  text-center" value="{{ shopping.shop_count }}">
+                        </td>
+                        <td class="actions" data-th="">
+
+
+                            <div class="text-right">
+                                <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                    <i class="fa fa-refresh"></i>
+                                </button>
+                                <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                     {% endfor %}
+                         <h4>جمع خريد:</h4>
+
+                     <h5>{{shopping.product.total }}</h5>
+                   {% else %}
+                       <h4>سبد خريد خالي است</h4>
+
+
+                   {% endif %}
+                </tbody>
+            </table>
+
+       <div class="">
+
+
+
+                     </div>
+
+        </div>
+    </div>
+    <div class="row mt-4 d-flex align-items-center">
+        <div class="col-sm-6 order-md-2 text-right">
+            <a href="catalog.html" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Checkout</a>
+        </div>
+        <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
+            <a href="catalog.html">
+                <i class="fas fa-arrow-left mr-2"></i> Continue Shopping</a>
+        </div>
+    </div>
+</div>
+</section>
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>
+
+{% endblock %}
+
+
+

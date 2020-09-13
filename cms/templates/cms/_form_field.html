@@ -1,0 +1,7 @@
+  <label class="col-md-{{ label_size|default:1}}"  for="{{ field.id_for_label }}">
+      {{field.label}}
+  </label>
+  <div class="col-{{ input_size| default:4 }}" style="margin-bottom: 10px">
+      {{ field }}
+      {{ field.errors }}
+  </div>

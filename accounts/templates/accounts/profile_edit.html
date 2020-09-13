@@ -1,0 +1,146 @@
+{% extends "cms/base_page.html" %}
+{% load static %}
+{% block title %}
+    ويرايش نمايه
+{% endblock %}
+
+
+{% block main_content %}
+    <div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+               <i class="fa fa-credit-card-alt"></i>
+                ويرايش نمايه
+            </div>
+        </div>
+        <div class="card col-lg-6">
+
+                <form action="" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                 <div class="card-body">
+                    <div class="row px-3">
+                        <div class="col-lg-3">
+                        <small class="text-muted">
+                            <i class="fa fa-user"></i>
+                            نام كاربري:
+                        </small>
+                        </div>
+                        <div class="col-lg-4">
+                            {{ user.username }}
+                        </div>
+
+                    </div>
+                    <div class="w-100" my-1></div>
+                    <div class="row px-3">
+                        <div class="col-lg-3">
+                        <small class="text-muted">
+                            <i class="fa fa-genderless"></i>
+                            جنسيت:
+                        </small>
+                        </div>
+                        <div class="col-lg-4">
+                            {{ profile_form.gender }}
+                        </div>
+
+                    </div>
+                    <div class="w-100" my-1></div>
+                    <div class="row px-3">
+                        <div class="col-lg-3">
+                        <small class="text-muted">
+                            <i class="fa fa-user-circle-o"></i>
+                            نام :
+                        </small>
+                        </div>
+                        <div class="col-lg-4">
+                            {{ user_form.first_name }}
+                        </div>
+
+                    </div>
+                    <div class="w-100" my-1></div>
+                    <div class="row px-3">
+                        <div class="col-lg-3">
+                        <small class="text-muted">
+                           <i class="fa fa-user-circle-o"></i>
+                            نام خانوادگي:
+                        </small>
+                        </div>
+                        <div class="col-lg-4">
+                          {{ user_form.last_name }}
+                        </div>
+                    </div>
+                    <div class="w-100" my-1></div>
+                    <div class="row px-3">
+                        <div class="col-lg-3">
+                        <small class="text-muted">
+                             <i class="fa fa-phone"></i>
+                            تلفن همراه:
+                        </small>
+                        </div>
+                        <div class="col-lg-4">
+                            {{ profile_form.mobile }}
+                        </div>
+                    </div>
+                    <div class="w-100" my-1></div>
+                    <div class="row px-3">
+                        <div class="col-lg-3">
+                        <small class="text-muted">
+                           <i class="fa fa-envelope-o"></i>
+                            ايميل
+                        </small>
+                        </div>
+                        <div class="col-lg-4">
+                         {{ user_form.email }}
+                        </div>
+                    </div>
+                    <div class="w-100" my-1></div>
+                    <div class="row px-3">
+                        <div class="col-lg-3">
+                        <small class="text-muted">
+                         <i class="fa fa-address-card"></i>
+                            آدرس:
+                        </small>
+                        </div>
+                        <div class="col-lg-4">
+                            {{ profile_form.address }}
+                        </div>
+                    </div>
+                    <div class="w-100" my-1></div>
+                    <button type="submit" class="btn btn-success">ذخيره</button>
+                  </div>
+                </form>
+            </div>
+        <div class="card col-lg-6">
+           <div class="card-body">
+                <form action="" method="post" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    <div class="card mb-3">
+                      {% if user.profile.profile_image %}
+                          <img class="card-img-top  d-none d-md-block rounded mb-2 shadow" style="width:250px; height:250px" src="{{ user.profile.profile_image.url }}" alt="Card image cap">
+                      {% endif %}
+                       <button type="button" class="btn-warning btn-sm" data-toggle="modal" data-target="#profile-image-modal">
+                       <i class="fa fa-file-image-o"></i>
+                       </button>
+                       <div class="modal fade" id="profile-image-modal">
+                           <div class="modal-dialog" role="document">
+                               <div class="modal-content">
+                                   <div class="modal-body">
+                                       {{ profile_form.profile_image }}
+                                   </div>
+                                   <div class="modal-footer">
+                                       <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">بستن</button>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                    </div>
+                </form>
+           </div>
+                </div>
+
+
+
+
+    </div>
+    </div>
+{% endblock %}

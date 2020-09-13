@@ -1,0 +1,68 @@
+{% extends "cms/base_page.html" %}
+
+{% block title %}
+محصولات
+{% endblock %}
+{% block toolbar_title %}
+
+{% endblock %}
+
+{% block main_content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="card bg-light text-info">
+                      <div class="card-body">
+                      <div class="col my-1 mx-2 py-2 search_bar">
+                      <form class="form-row px-2" action=""  method="get">
+                           {% include "cms/_form_field.html" with field=search_form.name_post label_size=1 input_size=4 %}
+                           {% include "cms/_form_field.html" with field=search_form.price_level label_size=1 input_size=4 %}
+                           <div class="col-md-4">
+                               {{ search_form.sale_is_open }}
+                               {{ search_form.sale_is_open.label }}
+                           </div>
+
+                            <button class="btn btn-outline-success btn-sm" type="submit">جست و جو</button>
+
+                     </form>
+                      </div>
+                      </div>
+                      <div class="card-body alert alert-info mt-2 mb-0 py-1 px-3">
+                        {{ post_count }}
+                         محصول يافت شد.
+                      </div>
+            </div>
+
+            <div class="card">
+                <div class="header">
+                    <h2><strong>باكيفيت ترين</strong> محصولات <small>MODISEH</small></h2>
+                    <br>
+                </div>
+                <div class="body">
+                    <ul class="new_friend_list list-unstyled row">
+                        {% if post_list %}
+                         {% for post in post_list %}
+
+                        <li class="col-lg-4 col-md-2 col-sm-6 col-4">
+
+                            <a style="text-decoration: none;" href="{% url "cms:Cmspost_details" post_id=post.id %}">
+                                <img  class="img-fluid d-none d-md-block rounded mb-2 shadow " src="{{ post.image.url }}" alt="{{ post.name_post }}" >
+                                <h6 class="users_name">{{ post.name_post }}</h6>
+                                <small class="join_date">جزءيات محصول</small>
+                            </a>
+                            <i class="fa fa-thumbs-o-up like" style="cursor: pointer"></i>
+                        </li>
+                         {% endfor %}
+                         {% else %}
+                              <div class="alert alert-danger">متاسفانه هيچ پستي وجود ندارد</div>
+                         {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

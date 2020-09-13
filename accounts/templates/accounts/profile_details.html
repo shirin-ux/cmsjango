@@ -1,0 +1,134 @@
+{% extends "cms/base_page.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+{% block title %}{{ porifile }}{% endblock %}
+{% block main_content %}
+    <div class="container">
+        <div class="row">
+        <div class="col-lg-4">
+            <h4>
+                <i class="fa fa-user"></i>
+                پروفايل كاربري
+            </h4>
+        </div>
+    </div>
+    <div class="row">
+<div class="col-md-12 col-lg-5">
+  <div class="card testimonial-card mt-2 mb-3">
+
+    <!-- Background color -->
+   <div class="card-up aqua-gradient"></div>
+    <div class="avatar mx-auto white " >
+        {% if profile.profile_image %}
+         <img src="{{ profile.profile_image.url }}" class="rounded-circle img-responsive" style="width: 300px;" >
+        {% endif %}
+       <div class="card bg-light text-dark">
+             <div class="card-body">
+          <a class="btn btn-success" href="{% url "accounts:profile_edit" %}">
+         <small>
+          <i class="fa fa-credit-card-alt"></i>
+             ويرايش نمايه
+         </small>
+           </a>
+          <a class="btn btn-warning" href="#">
+         <small>
+          <i class="fa fa-lock"></i>
+         تغيير گذر واژه
+         </small>
+           </a>
+
+
+             </div>
+        </div>
+
+ </div>
+
+    <!-- Content -->
+
+
+
+    </div>
+</div>
+    <div class="col-md-12 col-lg-7">
+  <div class="card testimonial-card mt-2 mb-3">
+
+    <!-- Background color -->
+   <div class="card-up aqua-gradient"></div>
+
+
+    <!-- Content -->
+    <div class="card-body">
+      <!-- Name -->
+      <h4 class="card-title font-weight-bold" dir="rtl">{{ profile.user }}</h4>
+      <hr>
+      <!-- Quotation -->
+        <div class="card  text-dark">
+        <div class="card-body h-25">
+      <small><i class="fa fa-user-circle-o"></i>
+          نام و نام خانوادگي:
+        </small>
+           <h4>{{ profile.user.get_full_name }}</h4>
+        </div>
+        </div>
+         <div class="card bg-light text-dark">
+        <div class="card-body">
+      <small><i class="fa fa-birthday-cake"></i>
+          تاريخ تولد:
+        </small>
+
+          <h4>{{ profile.jd_brith_date|date:"Y/n/j" }}</h4>
+        </div>
+        </div>
+         <div class="card bg-light text-dark">
+        <div class="card-body">
+      <small>
+         <i class="fa fa-phone"></i>
+         تلفن همراه:
+        </small>
+
+          <h4>{{ profile.mobile }}</h4>
+        </div>
+        </div>
+         <div class="card bg-light text-dark">
+        <div class="card-body">
+      <small><i class="fa fa-money"></i>
+          اعتبار:
+        </small>
+
+          <h4>{{ profile.get_balance_display }}</h4>
+        </div>
+         <div class="col-lg-4">
+             <a href="#" class="btn btn-success">
+      <small><i class="fa fa-money"></i>
+          افزايش اعتبار
+      </small>
+             </a>
+        </div>
+        </div>
+         <div class="card bg-light text-dark">
+             <div class="card-body">
+      <small>
+          <i class="fa fa-address-card"></i>
+         آدرس:
+        </small>
+
+          <h4>{{ profile.address }}</h4>
+
+             </div>
+        </div>
+
+
+    </div>
+
+
+    </div>
+</div>
+
+    </div>
+
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "cms/base_page.html" %}
+{% load static %}
+{% block title %}
+  {{ posts.name_post }}
+{% endblock %}
+{% block toolbar_title %}
+
+{% endblock %}
+
+{% block main_content %}
+    <div class="container">
+
+    <div class="row">
+
+
+        <div class="card-body col-lg-6">
+             <h4 class="card-title">نام محصول:<small> {{ posts.name_post }}</small></h4>
+        <h4 class="card-title">قيمت محصول:<small>  {{ posts.price_post }}  {{ 'تومان' }}</small></h4>
+        <h4 class="card-title"> ويژگي محصول :  <small>{{ posts.matn_post }}</small></h4>
+            </div>
+  <div class="card col-lg-6 text-center text-white button btn
+               {% if posts.status == posts.SALE_CLOSED %}
+                     disabled btn-outline-light
+               {% elif posts.status != posts.SALE_CLOSED %}
+                      badge-info
+               {% endif %}">
+
+              <img class="img-fluid d-none d-md-block rounded mb-2 shadow " src="{{ posts.image.url }}" alt="{{ posts.name_post}}">
+
+             <div class="card-img-overlay text-danger">
+             <h1><span class="badge
+                 {% if posts.status == posts.SALE_NOT_STARTED %}
+                      badge-warning
+                 {% elif posts.status == posts.SALE_CLOSED %}
+                     badge-danger
+                 {% elif posts.status == posts.SALE_OPEN %}
+                  badge-success
+                 {% else %}
+                    badge-light
+                 {% endif %}">
+
+                 {% if posts.status != posts.SALE_CLOSED %}
+                   {{ posts.get_price_post_display}}
+                 {% else %}
+                   {{ posts.get_status_display }}
+                 {% endif %}
+                 </span></h1>
+              </div>
+   </div>
+
+
+    </div>
+    <div class="row">
+        <div class="row px-3">
+
+          <form method="post" action="" class="col-lg-12">
+              {% csrf_token %}
+          <div class="form-row align-items-center">
+          <div class="col-auto my-1">
+          <label class="mr-sm-2" for="inlineFormCustomSelect">چند تعداد را انتخاب مي كنيد</label>
+          <select name="shop_count" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+          <option selected>Choose...</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+         </select>
+         </div>
+         <div class="col-auto my-1">
+         <div class="custom-control custom-checkbox mr-sm-2">
+        <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+        <label class="custom-control-label" for="customControlAutosizing">
+اولویت من را به خاطر بسپار</label>
+      </div>
+    </div>
+    <div class="col-auto my-1">
+      <button type="submit" class="btn btn-success" >خريد محصول</button>
+    </div>
+  </div>
+</form>
+            {% if error %}
+            <div class="alert alert-danger col-lg-12">{{ error }}</div>
+            {% endif %}
+    </div>
+    </div>
+
+
+    </div>
+{% endblock %}
+
+

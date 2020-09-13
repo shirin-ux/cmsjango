@@ -1,0 +1,58 @@
+{% extends "cms/base_page.html" %}
+{% block title %}
+{{ comments.cmspost }}
+{% endblock %}
+ {% block toolbar_title %}
+     {{ comments.cmspost }}
+{% endblock %}
+{% block toolbar_butttons %}
+      <a class="btn btn-light py-1 px-2" href="{% url "cms:Cmspost_list" %}">
+      <i class="fab fa-product-hunt"></i>
+          ليست محصولات
+      </a>
+
+      <a class="btn btn-light py-1 px-2" href="{% url "cms:Cmscomment_list" %}">
+      <i class="fas fa-comment"></i>
+          ليست نظرات
+      </a>
+{% endblock %}]
+ {% block main_content %}
+
+<div class="row py-3">
+    <div class="col-8">
+
+ <div class="row px-3">
+            <div class="col-3">
+               <small class="text-muted">
+                    نظر كاربردر مورد محصول:
+               </small>
+            </div>
+            <div class="col-9">
+                {{ comments.cmspost }}
+
+            </div>
+
+        </div>
+
+        <div class="row px-3">
+            <div class="col-3">
+               <small class="text-muted">
+                   نظر كاربر:
+               </small>
+            </div>
+            <div class="col-9">
+                {{comments.matn_comment}}
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+{% endblock %}]
+

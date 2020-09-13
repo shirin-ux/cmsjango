@@ -1,0 +1,35 @@
+{% extends "cms/base_page.html" %}
+{% block title %}
+    نظرات كاربران
+{% endblock %}
+{% block toolbar_title %}
+نظرات كاربران
+{% endblock %}
+
+{% block toolbar_butttons %}
+<a class="btn btn-light py-1 px-2" href="{% url "cms:Cmspost_list" %}">
+    <i class="fab fa-product-hunt"></i>
+          ليست محصولات
+</a>
+
+<a class="btn btn-light py-1 px-2" href="{% url "cms:Cmscomment_list" %}">
+    <i class="fas fa-comment"></i>
+          ليست نظرات
+</a>
+ {% endblock %}
+{% block main_content %}
+    <div class="row">
+     {% if comments %}
+        {% for comment in comments %}
+       <div class="card">
+       <div class="row">
+          <div class="card-body">{{ comment.cmspost }} :{{ comment.matn_comment }}</div>
+       </div>
+        </div>
+         {% endfor %}
+        {% else %}
+     <p style="color: red">متاسفانه هيچ نظري وجود ندارد</p>
+    {% endif %}
+         </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+@font-face {
+    font-family:BYekan;
+    src: url("../webfonts/BYekan.woff");
+}
+body{
+    direction: rtl;
+    font-family:BYekan;
+    background-color: #ebebeb;
+    text-align: right;
+}
+
+
+.image:hover {
+  -webkit-transform: scale(1.05,1.05);
+  transform: scale(1.05,1.05);
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+}
+.search_bar
+{
+    font-size: 0.8em;
+}
+.search_bar p{
+    margin: 0 20px;
+}
+.search_bar .errorlist
+{
+    color: #a71d2a;
+}

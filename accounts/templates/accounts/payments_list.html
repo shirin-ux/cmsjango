@@ -1,0 +1,49 @@
+{% extends "cms/base_page.html" %}
+{% load static %}
+{% block toolbar_title %}
+    پرداخت هاي من
+{% endblock %}
+
+{% block main_content %}
+    <div class="container">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+
+                <a class="btn btn-success" href="{% url "accounts:payments_create" %}">
+                   <i class="fa fa-plus"></i>
+                    پرداخت جديد</a>
+
+            </div>
+            <div class="card-body">
+                {% if payment %}
+                    <ul class="list-group-item-light">
+                    {% for payments in payment %}
+                        <li>
+                        <span class="ml-4">
+                            مبلغ:
+                          <span class="text-muted ml-1">{{ payments.amount }}</span>
+                        </span>
+
+                        <span class="ml-4">
+                            تاريخ تراكنش:
+                         <span class="text-muted ml-1">{{ payments.jd_transaction_time | date:"Y/n/j - H:i"}}</span>
+                        </span>
+
+                        <span class="ml-4">
+                            رسيد تراكنش:
+                         <span class="text-muted ml-1">{{ payments.transaction_code}}</span>
+                        </span>
+
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% else  %}
+                    <div class="alert alert-danger">هيچ تراكنشي صورت نگرفته</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
